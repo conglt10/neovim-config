@@ -1,3 +1,4 @@
+
 return {
   {
     "stevearc/conform.nvim",
@@ -28,6 +29,11 @@ return {
     "folke/snacks.nvim",
     priority = 1000,
     lazy = false,
+    keys = {
+      { "<leader><space>", function() Snacks.picker.smart() end, desc = "Smart Find Files" },
+      { "<leader>,", function() Snacks.picker.buffers() end, desc = "Buffers" },
+      { "<leader>gr", function() Snacks.picker.grep() end, desc = "Grep" },
+    },
     opts = {
       -- your configuration comes here
       -- or leave it empty to use the default settings
@@ -136,3 +142,4 @@ return {
     end
   }
 }
+
