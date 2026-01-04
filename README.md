@@ -1,10 +1,10 @@
-# 💤 LazyVim and NvChad
+# LazyVim and NvChad
 
 [LazyVim](https://github.com/LazyVim/LazyVim).
 Refer to the [documentation](https://lazyvim.github.io/installation) to get started.
 
-[NvChad](https://github.com/NvChad/NvChad)
-Refer to the [documentation](https://nvchad.com/docs/quickstart/install) to get started
+[NvChad](https://github.com/NvChad/NvChad).
+Refer to the [documentation](https://nvchad.com/docs/quickstart/install) to get started.
 
 # 1. Requirements
 
