@@ -20,5 +20,5 @@ if vim.fn.has("wsl") == 1 then
 end
 
 -- Cho phép dùng chung bộ nhớ với hệ thống
-vim.opt.clipboard = "unnamedplusa"
+vim.opt.clipboard = "unnamedplus"
 

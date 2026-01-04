@@ -42,7 +42,9 @@ unzip [file name downloaded]
 mkdir -p ~/.fonts
 ```
 
-### 4. Copy all file `.ttf` to fonts folder `~/.fonts`
+### 4. Copy file fonts
+
+Copy all `.ttf` to fonts folder `~/.fonts`
 
 ### 5.
 
