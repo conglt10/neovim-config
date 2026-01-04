@@ -26,7 +26,9 @@ sudo apt install fd-find
 
 ## Nerd font
 
-### 1.Download from: https://www.nerdfonts.com/font-downloads
+### 1.Download font
+
+https://www.nerdfonts.com/font-downloads
 
 ### 2. unzip
 
