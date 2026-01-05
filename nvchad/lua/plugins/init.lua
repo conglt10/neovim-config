@@ -1,4 +1,3 @@
-
 return {
   {
     "stevearc/conform.nvim",
@@ -29,11 +28,6 @@ return {
     "folke/snacks.nvim",
     priority = 1000,
     lazy = false,
-    keys = {
-      { "<leader><space>", function() Snacks.picker.smart() end, desc = "Smart Find Files" },
-      { "<leader>,", function() Snacks.picker.buffers() end, desc = "Buffers" },
-      { "<leader>gr", function() Snacks.picker.grep() end, desc = "Grep" },
-    },
     opts = {
       -- your configuration comes here
       -- or leave it empty to use the default settings
@@ -51,6 +45,11 @@ return {
       statuscolumn = { enabled = true },
       words = { enabled = true },
     },
+    keys = {
+      { "<leader><space>", function() Snacks.picker.smart() end, desc = "Smart Find Files" },
+      { "<leader>,", function() Snacks.picker.buffers() end, desc = "Buffers" },
+      { "<leader>gr", function() Snacks.picker.grep() end, desc = "Grep" },
+    }
   },
   {
     "yetone/avante.nvim",
@@ -82,23 +81,23 @@ return {
       "folke/snacks.nvim", -- for input provider snacks
       "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
       "zbirenbaum/copilot.lua", -- for providers='copilot'
-      {
-        -- support for image pasting
-        "HakonHarnes/img-clip.nvim",
-        event = "VeryLazy",
-        opts = {
-          -- recommended settings
-          default = {
-            embed_image_as_base64 = false,
-            prompt_for_file_name = false,
-            drag_and_drop = {
-              insert_mode = true,
-            },
-            -- required for Windows users
-            use_absolute_path = true,
-          },
-        },
-      },
+      -- {
+      --   -- support for image pasting
+      --   "HakonHarnes/img-clip.nvim",
+      --   event = "VeryLazy",
+      --   opts = {
+      --     -- recommended settings
+      --     default = {
+      --       embed_image_as_base64 = false,
+      --       prompt_for_file_name = false,
+      --       drag_and_drop = {
+      --         insert_mode = true,
+      --       },
+      --       -- required for Windows users
+      --       use_absolute_path = true,
+      --     },
+      --   },
+      -- },
       {
         -- Make sure to set this up properly if you have lazy=true
         'MeanderingProgrammer/render-markdown.nvim',
@@ -123,12 +122,22 @@ return {
   },
   { 'nvim-mini/mini.files', version = '*' },
   {
+    "kylechui/nvim-surround",
+    version = "^3.0.0", -- Use for stability; omit to use `main` branch for the latest features
+    event = "VeryLazy",
+    config = function()
+        require("nvim-surround").setup({
+            -- Configuration here, or leave empty to use defaults
+        })
+    end
+  },
+  {
     'MagicDuck/grug-far.nvim',
     -- Note (lazy loading): grug-far.lua defers all it's requires so it's lazy by default
     -- additional lazy config to defer loading is not really needed...
     keys = { 
-      { "<leader>r", "<cmd>GrugFar<cr>", desc = "Find & Replace (grug-far)" },
-      { "<leader>se", function() 
+      { "<leader>sr", "<cmd>GrugFar<cr>", desc = "Find & Replace (grug-far)" },
+      { "<leader>sg", function() 
          require("grug-far").open({ engine = "astgrep" })
         end, desc = "Find & Replace with sg (grug-far)"
       },
@@ -142,4 +151,3 @@ return {
     end
   }
 }
-
