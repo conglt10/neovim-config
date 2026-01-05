@@ -66,3 +66,16 @@ cargo install --locked tree-sitter-cli
 ```bash
 sudo apt install wl-clipboard
 ```
+
+# Some error when install
+
+## 1. Error about avante.nvim
+
+```bash
+cd ~/.local/share/nvchad/lazy/avante.nvim
+# OR: cd ~/.local/share/nvim/lazy/avante.nvim
+rm -rf build
+make luajit BUILD_FROM_SOURCE=true
+```
+
+
