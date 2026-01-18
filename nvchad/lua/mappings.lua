@@ -16,6 +16,14 @@ map("v", "<A-k>", ":m '<-2<CR>gv=gv", { desc = "Move line up" })
 map("n", "<leader>gd", "<cmd>DiffviewOpen<CR>", { desc = "Git diff" })
 map("n", "<leader>gc", "<cmd>DiffviewClose<CR>", { desc = "Git diff close" })
 
+local function open_copilot_term()
+  local width = math.floor(vim.o.columns * 0.33)
+  vim.cmd("vsplit")
+  vim.cmd("vertical resize " .. width)
+  vim.cmd("term copilot")
+  vim.cmd("startinsert")
+end
+
 local function open_opencode_term()
   local width = math.floor(vim.o.columns * 0.33)
   vim.cmd("vsplit")
@@ -25,4 +33,5 @@ local function open_opencode_term()
 end
 
 map('n', '<C-b>', open_opencode_term, { desc = "Open opencode terminal (1/3 width)" })
+map('n', '<C-m>', open_copilot_term, { desc = "Open copilot terminal (1/3 width)" })
 map('t', '<C-w>', [[<C-\><C-n><cmd>q!<CR>]], { desc = "Exit split view" })
