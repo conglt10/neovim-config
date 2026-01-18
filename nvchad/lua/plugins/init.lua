@@ -28,6 +28,11 @@ return {
     "folke/snacks.nvim",
     priority = 1000,
     lazy = false,
+    keys = {
+      { "<leader><space>", function() Snacks.picker.smart() end, desc = "Smart Find Files" },
+      { "<leader>,", function() Snacks.picker.buffers() end, desc = "Buffers" },
+      { "<leader>gr", function() Snacks.picker.grep() end, desc = "Grep" },
+    },
     opts = {
       -- your configuration comes here
       -- or leave it empty to use the default settings
@@ -45,11 +50,6 @@ return {
       statuscolumn = { enabled = true },
       words = { enabled = true },
     },
-    keys = {
-      { "<leader><space>", function() Snacks.picker.smart() end, desc = "Smart Find Files" },
-      { "<leader>,", function() Snacks.picker.buffers() end, desc = "Buffers" },
-      { "<leader>gr", function() Snacks.picker.grep() end, desc = "Grep" },
-    }
   },
   {
     "yetone/avante.nvim",
@@ -59,6 +59,7 @@ return {
         and "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false"
         or "make",
     event = "VeryLazy",
+    mode = "legacy",
     version = false, -- Never set this value to "*"! Never!
     ---@module 'avante'
     ---@type avante.Config
@@ -68,6 +69,9 @@ return {
       instructions_file = "avante.md",
       -- for example
       provider = "copilot",
+      model = "copilot/gpt-4.1",
+      -- auto_suggestions_provider = "gpt-4.1",
+      mode = 'legacy', -- agentic | legacy
     },
     dependencies = {
       "nvim-lua/plenary.nvim",
@@ -120,16 +124,29 @@ return {
       ensure_installed = { "lua-language-server", "typescript-language-server" },
     }
   },
-  { 'nvim-mini/mini.files', version = '*' },
   {
     "kylechui/nvim-surround",
-    version = "^3.0.0", -- Use for stability; omit to use `main` branch for the latest features
+    version = "^3.0.0",
     event = "VeryLazy",
     config = function()
         require("nvim-surround").setup({
-            -- Configuration here, or leave empty to use defaults
         })
     end
+  },
+  {
+    "sindrets/diffview.nvim",
+    dependencies = {
+      'nvim-lua/plenary.nvim', -- Required dependency
+      'nvim-tree/nvim-web-devicons', -- Optional, for file icons
+    },
+    cmd = {
+      'DiffviewOpen',
+      'DiffviewClose',
+      'DiffviewToggleFiles',
+      'DiffviewFocusFiles',
+      'DiffviewRefresh',
+      'DiffviewFileHistory',
+    },
   },
   {
     'MagicDuck/grug-far.nvim',
