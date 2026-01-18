@@ -69,9 +69,21 @@ return {
       instructions_file = "avante.md",
       -- for example
       provider = "copilot",
-      model = "copilot/gpt-4.1",
-      -- auto_suggestions_provider = "gpt-4.1",
+      model = "gpt-4.1",
+      auto_suggestions_provider = "copilot/gpt-4.1",
       mode = 'legacy', -- agentic | legacy
+      providers = {
+          ['copilot/gpt-4.1'] = {
+          __inherited_from = 'copilot',
+          model = 'gpt-4.1',
+          display_name = 'copilot/gpt-4.1',
+          extra_request_body = {
+            max_tokens = 65536,
+          },
+
+          disable_tools = true,
+        },
+      }
     },
     dependencies = {
       "nvim-lua/plenary.nvim",
