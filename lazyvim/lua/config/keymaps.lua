@@ -31,3 +31,4 @@ map('n', '<M-l>', open_copilot_term, { desc = "Open copilot terminal (1/3 width)
 map('n', '<C-g>', open_gemini_term, { desc = "Open gemini terminal (1/3 width)" })
 map('t', '<M-w>', [[<C-\><C-n><cmd>q!<CR>]], { desc = "Exit split view" })
 
+
