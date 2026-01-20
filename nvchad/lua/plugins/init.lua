@@ -34,94 +34,53 @@ return {
       { "<leader>gr", function() Snacks.picker.grep() end, desc = "Grep" },
     },
     opts = {
-      -- your configuration comes here
-      -- or leave it empty to use the default settings
-      -- refer to the configuration section below
       bigfile = { enabled = true },
       dashboard = { enabled = true },
       explorer = { enabled = false },
       indent = { enabled = false },
       input = { enabled = true },
-      picker = { enabled = true },
+      -- picker = { enabled = true },
+       picker = {
+      actions = {
+        opencode_send = function(picker)
+          local selected = picker:selected({ fallback = true })
+          if selected and #selected > 0 then
+            local files = {}
+            for _, item in ipairs(selected) do
+              if item.file then
+                table.insert(files, item.file)
+              end
+            end
+            picker:close()
+
+            require("opencode.core").open({
+              new_session = false,
+              focus = "input",
+              start_insert = true,
+            })
+
+            local context = require("opencode.context")
+            for _, file in ipairs(files) do
+              context.add_file(file)
+            end
+          end
+        end,
+      },
+      win = {
+        input = {
+          keys = {
+            -- Use <localleader>o or any preferred key to send files to opencode
+            ["<localleader>o"] = { "opencode_send", mode = { "n", "i" } },
+          },
+        },
+      },
+    },
       notifier = { enabled = true },
       quickfile = { enabled = true },
       scope = { enabled = true },
       scroll = { enabled = true },
       statuscolumn = { enabled = true },
       words = { enabled = true },
-    },
-  },
-  {
-    "yetone/avante.nvim",
-    -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
-    -- ⚠️ must add this setting! ! !
-    build = vim.fn.has("win32") ~= 0
-        and "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false"
-        or "make",
-    event = "VeryLazy",
-    mode = "legacy",
-    version = false, -- Never set this value to "*"! Never!
-    ---@module 'avante'
-    ---@type avante.Config
-    opts = {
-      -- add any opts here
-      -- this file can contain specific instructions for your project
-      instructions_file = "avante.md",
-      -- for example
-      provider = "copilot",
-      model = "gpt-4.1",
-      auto_suggestions_provider = "copilot/gpt-4.1",
-      mode = 'legacy', -- agentic | legacy
-      providers = {
-          ['copilot/gpt-4.1'] = {
-          __inherited_from = 'copilot',
-          model = 'gpt-4.1',
-          display_name = 'copilot/gpt-4.1',
-          extra_request_body = {
-            max_tokens = 65536,
-          },
-
-          disable_tools = true,
-        },
-      }
-    },
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "MunifTanjim/nui.nvim",
-      --- The below dependencies are optional,
-      "nvim-mini/mini.pick", -- for file_selector provider mini.pick
-      "nvim-telescope/telescope.nvim", -- for file_selector provider telescope
-      "hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
-      "ibhagwan/fzf-lua", -- for file_selector provider fzf
-      "stevearc/dressing.nvim", -- for input provider dressing
-      "folke/snacks.nvim", -- for input provider snacks
-      "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
-      "zbirenbaum/copilot.lua", -- for providers='copilot'
-      -- {
-      --   -- support for image pasting
-      --   "HakonHarnes/img-clip.nvim",
-      --   event = "VeryLazy",
-      --   opts = {
-      --     -- recommended settings
-      --     default = {
-      --       embed_image_as_base64 = false,
-      --       prompt_for_file_name = false,
-      --       drag_and_drop = {
-      --         insert_mode = true,
-      --       },
-      --       -- required for Windows users
-      --       use_absolute_path = true,
-      --     },
-      --   },
-      -- },
-      {
-        -- Make sure to set this up properly if you have lazy=true
-        'MeanderingProgrammer/render-markdown.nvim',
-        opts = {
-          file_types = { "markdown", "Avante" },
-        },
-        ft = { "markdown", "Avante" },
-      },
     },
   },
   {

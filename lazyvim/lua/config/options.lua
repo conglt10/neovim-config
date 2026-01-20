@@ -21,4 +21,3 @@ end
 
 -- Cho phép dùng chung bộ nhớ với hệ thống
 vim.opt.clipboard = "unnamedplus"
-
